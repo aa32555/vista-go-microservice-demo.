@@ -26,7 +26,7 @@ Below, we fetch the IP of an interface which we can use to tell the Kubernetes c
 ```
 minikube delete
 minikube start --insecure-registry $(ifconfig | grep -C 1 wlp0 | grep inet | awk '{print $2}'):5000
-``
+```
 
 ## Step 2 - Build Docker image
 
@@ -60,7 +60,7 @@ kubectl apply -f service.yml
 kubectl get pods
 
 minikube service vista-deployment --url
-``
+```
 
 The last command will output a string of the form ``http://192.168.11.1:12345``; copy the IP and port number to verify SSH works:
 
