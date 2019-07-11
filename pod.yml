@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vista-deployment
+  labels:
+    app: vista
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vista
+  template:
+    metadata:
+      labels:
+        app: vista
+    spec:
+      containers:
+      - name: vista
+        image: 172.22.124.139:5000/vista-demo
+        ports:
+        - containerPort: 22
+        - containerPort: 1338
+        volumeMounts:
+        - mountPath: /var/wiki/
+          name: vista-claim0
+      volumes:
+      - name: vista-claim0
+        persistentVolumeClaim:
+          claimName: vista-claim0
